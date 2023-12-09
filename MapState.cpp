@@ -16,6 +16,8 @@ void MapState::Enter()
 	Input::SuspendInput = false;
 	currentEncounterChance = baseEncounterChance;
 	srand(time(0));
+	isEncounter = false;
+	isPlayeWin = false;
 }
 
 //called every frame, used for the main logic of the state. Returns false on error or when the state is finished.
@@ -29,7 +31,7 @@ bool MapState::Execute()
 		return true;
 	}
 
-	if (map->GetTileIDAt(player->GetPositionX(), player->GetPositionY()) == 4)
+	if (map->GetTileIDAt(player->GetPositionX(), player->GetPositionY()) == 4) // tile is equal to win tile;
 	{
 		isPlayeWin == true;
 		return true;
@@ -40,11 +42,11 @@ bool MapState::Execute()
 //called when the state is exited, used for cleanup and last run operations
 State* MapState::Exit()
 {
-	if (isEncounter)
-		return new EncounterState();
+	if (isPlayeWin)
+		return new WinState();
 
 	else
-		return new WinState();
+		return new EncounterState();
 }
 
 bool MapState::isThereEncounter()

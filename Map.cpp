@@ -135,8 +135,6 @@ void Map::PrintMap()
 	}
 
 	Display::GetInstance()->DrawBorderAroundMainDisplay();
-	Display::GetInstance()->SetCursorPosition(0, 26);
-	std::cout << viewportPositionX << " , " << viewportPositionY << "   ";
 	Display::GetInstance()->PlaceCursorAtBottom();
 }
 
@@ -176,8 +174,6 @@ void Map::PrintMapFull() {
 		}
 	}
 	Display::GetInstance()->DrawBorderAroundMainDisplay();
-	Display::GetInstance()->SetCursorPosition(0, 26);
-	std::cout << viewportPositionX << " , " << viewportPositionY << "   ";
 	Display::GetInstance()->PlaceCursorAtBottom();
 }
 

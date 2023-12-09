@@ -41,7 +41,6 @@ void Player::DoMove()
 	// Check if the new position is within the map bounds and the tile is walkable
 	if (map->isInMapBounds(positionX + relativePositionX, positionY + relativePositionY) && map->IsTileWalkableAt(positionX + relativePositionX, positionY + relativePositionY))
 		SetPosition(positionX + relativePositionX, positionY + relativePositionY);
-	std::cout << std::endl << std::endl << "X: " << positionX << " , " << "Y: " << positionY << "    ";
 }
 
 void Player::SetPosition(int x = 5, int y = 5)

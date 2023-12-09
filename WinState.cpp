@@ -8,6 +8,7 @@ bool States::WinState::CanEnter() // Check if the state can be entered
 void States::WinState::Enter() // Enter the Game Over state
 {
 	winScreen.Display(); // Display the Game Over screen
+	Input::SuspendInput = false;
 }
 
 bool States::WinState::Execute() // Execute the Game Over state

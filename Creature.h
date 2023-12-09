@@ -63,9 +63,9 @@ public:
 
 	int Heal() {
 		int ammt = rand() % 9 + 5; //gain 5-13 health
-		stats.ModifyHitpoints(ammt);
 		if (ammt > stats.GetMana())
 			return 0;
+		stats.ModifyHitpoints(ammt);
 		stats.ModifyMana(-(rand() % 4 + 1));//1-4 mana cost
 		return ammt;
 	}
