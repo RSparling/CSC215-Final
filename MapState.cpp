@@ -10,30 +10,53 @@ bool MapState::CanEnter()
 void MapState::Enter()
 {
 	system("cls");
-	map.PrintMapFull();
+	map = Map::GetInstance();
+	player = Player::GetInstance();
+	map->PrintMapFull();
 	Input::SuspendInput = false;
+	currentEncounterChance = baseEncounterChance;
+	srand(time(0));
 }
 
 //called every frame, used for the main logic of the state. Returns false on error or when the state is finished.
 bool MapState::Execute()
 {
-	Input* input = Input::GetInstance();
-	int viewportX = map.GetViewportPositionX();
-	int viewportY = map.GetViewportPositionY();
-	if (input->GetKeyDown(KeyCode::Arrow_Up))
-		map.SetViewportPosition(viewportX, viewportY - 1);
-	else if (input->GetKeyDown(KeyCode::Arrow_Down))
-		map.SetViewportPosition(viewportX, viewportY + 1);
-	else if (input->GetKeyDown(KeyCode::Arrow_Left))
-		map.SetViewportPosition(viewportX - 1, viewportY);
-	else if (input->GetKeyDown(KeyCode::Arrow_Right))
-		map.SetViewportPosition(viewportX + 1, viewportY);
+	player->DoMove();
+	map->PrintMap();
+	if (isThereEncounter())
+	{
+		isEncounter = true;
+		return true;
+	}
 
-	map.PrintMap();
+	if (map->GetTileIDAt(player->GetPositionX(), player->GetPositionY()) == 4)
+	{
+		isPlayeWin == true;
+		return true;
+	}
+
 	return false;
 }
 //called when the state is exited, used for cleanup and last run operations
 State* MapState::Exit()
 {
-	return nullptr;
+	if (isEncounter)
+		return new EncounterState();
+
+	else
+		return new WinState();
+}
+
+bool MapState::isThereEncounter()
+{
+	lastRoll = rand() % 150;
+
+	if (lastRoll < currentEncounterChance)
+	{
+		isEncounter = true;
+		return true;
+	}
+	else
+		currentEncounterChance += chanceIncreasePerStep;
+	return false;
 }

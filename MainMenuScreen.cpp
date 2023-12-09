@@ -2,6 +2,7 @@
 
 MainMenuScreen::MainMenuScreen()
 {
+	// Initialize the screen string with the ASCII art
 	screen =
 		"|______________________________________________________________________________________________________________________|\n"//0
 		"|                                                                                                                      |\n"//1
@@ -38,13 +39,13 @@ void MainMenuScreen::Update()
 {
 	Input* input = Input::GetInstance();
 
-	//incriment cursor based on input
+	// Increment or decrement the cursor based on input
 	if (input->GetKeyDown(KeyCode::Arrow_Left))
 		cursor -= 1;
 	else if (input->GetKeyDown(KeyCode::Arrow_Right))
 		cursor += 1;
 
-	//keep cursor in bounds
+	// Keep the cursor within bounds
 	if (cursor > 1)
 		cursor = 0;
 	else if (cursor < 0)
@@ -53,11 +54,13 @@ void MainMenuScreen::Update()
 	system("cls");
 	std::cout << screen;
 
+	// Set the cursor position based on the cursor value
 	COORD coord = { (short)cursor == 0 ? 15 : 81,(short)24 };
 	Display::GetInstance()->SetCursorPosition(coord);
 	std::cout << ">";
 	Display::GetInstance()->PlaceCursorAtBottom();
 }
+
 int MainMenuScreen::GetChoice()
 {
 	return cursor;
@@ -68,6 +71,7 @@ void MainMenuScreen::Display()
 	system("cls");
 	std::cout << screen;
 
+	// Set the cursor position based on the cursor value
 	COORD coord = { (short)cursor == 0 ? 15 : 81,(short)24 };
 	Display::GetInstance()->SetCursorPosition(coord);
 	std::cout << ">";
