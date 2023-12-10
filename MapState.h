@@ -33,7 +33,7 @@ namespace States {
 
 		//every time the player moves, there is a chance of an encounter
 		//this increases the chance of an encounter every time the player moves
-		float baseEncounterChance = 5;
+		float baseEncounterChance = 3;
 		float chanceIncreasePerStep = .1;
 		float currentEncounterChance = 0;
 

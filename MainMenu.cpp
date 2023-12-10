@@ -13,6 +13,7 @@ bool States::MainMenu::CanEnter()
 
 void States::MainMenu::Enter()
 {
+	menuChoice = -1;
 	menuScreen.Display(); // call the Display function of menuScreen
 }
 

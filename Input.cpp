@@ -55,6 +55,11 @@ Input* Input::GetInstance()
 	return instance;
 }
 
+void Input::FlushInputs()
+{
+	instance->inputs.assign(KeyCode::LAST_ELEMENT, false);
+}
+
 bool Input::GetKeyDown(KeyCode key)
 {
 	//try catch to catch weird out of bounds errors.

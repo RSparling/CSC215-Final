@@ -2,23 +2,29 @@
 
 bool States::WinState::CanEnter() // Check if the state can be entered
 {
-	return false; // Cannot enter the Game Over state
+	return true; // Cannot enter the Game Over state
 }
 
 void States::WinState::Enter() // Enter the Game Over state
 {
 	winScreen.Display(); // Display the Game Over screen
 	Input::SuspendInput = false;
+	Input::FlushInputs();
 }
 
 bool States::WinState::Execute() // Execute the Game Over state
 {
 	winScreen.Update(); // Update the Game Over screen
 
-	if (input->GetKeyDown(KeyCode::Enter)) // If the Enter key is pressed
-		return true; // Return true to confirm the game over
-
-	return false; // Return false to indicate that the game over has not been confirmed yet
+	if (!input->GetKeyDown(KeyCode::Enter)) {// If the Enter key is pressed	
+		return false;
+	}
+	else {
+		menuChoice = winScreen.GetChoice();
+		if (menuChoice == 0 || menuChoice == 1)
+			return true;
+	}
+	return false;  // Return false to indicate that the game over has not been confirmed yet
 }
 
 State* States::WinState::Exit() // Exit the Game Over state

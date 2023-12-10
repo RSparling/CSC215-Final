@@ -54,7 +54,7 @@ void GameOverScreen::Update()
 	system("cls");
 	std::cout << screen;
 
-	// Set the cursor position based on the current choice
+	// Set the cursor position based on the cursor value
 	COORD coord = { (short)cursor == 0 ? 9 : 75,(short)24 };
 	Display::GetInstance()->SetCursorPosition(coord);
 	std::cout << ">";
@@ -71,7 +71,7 @@ void GameOverScreen::Display()
 	system("cls");
 	std::cout << screen;
 
-	// Set the cursor position based on the current choice
+	// Set the cursor position based on the cursor value
 	COORD coord = { (short)cursor == 0 ? 15 : 81,(short)24 };
 	Display::GetInstance()->SetCursorPosition(coord);
 	std::cout << ">";

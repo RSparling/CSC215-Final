@@ -33,7 +33,7 @@ bool MapState::Execute()
 
 	if (map->GetTileIDAt(player->GetPositionX(), player->GetPositionY()) == 4) // tile is equal to win tile;
 	{
-		isPlayeWin == true;
+		isPlayeWin = true;
 		return true;
 	}
 

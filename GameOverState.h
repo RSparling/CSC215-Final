@@ -28,5 +28,6 @@ namespace States {
 	private:
 		GameOverScreen gameOverScreen;
 		Input* input;
+		int menuChoice = -1;
 	};
 }

@@ -49,7 +49,7 @@ public:
 		return stats.RollDamage();
 	}
 
-	//return true if health >= 0
+	//return true if health <= 0
 	bool TakeDamage(int ammt) {
 		return stats.TakeDamage(ammt);
 	}

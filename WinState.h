@@ -18,5 +18,6 @@ namespace States {
 	private:
 		Input* input;
 		WinScreen winScreen;
+		int menuChoice = -1;
 	};
 }
