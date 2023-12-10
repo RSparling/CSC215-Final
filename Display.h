@@ -12,10 +12,14 @@ public:
 	Display();
 
 	static Display* GetInstance();
-
+	
+	
 	void SetCursorPosition(int x, int y);
 	void SetCursorPosition(COORD coord);
 	void PlaceCursorAtBottom();
+
+	//Things to dress it up
+	void DrawBorderAroundMainDisplay();
 private:
 	static Display* instance;
 

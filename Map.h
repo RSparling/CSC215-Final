@@ -1,10 +1,9 @@
 #pragma once
-#ifndef MAP_H
-#define MAP_H
-
 #include <iostream>
 #include <vector>
 #include "Display.h"
+#include "Player.h"
+
 using std::vector;
 
 /*
@@ -31,9 +30,11 @@ class TileDictionary {
 public:
 	TileDictionary() {
 		dictionary = vector<Tile>();
-		dictionary.push_back(Tile());
-		dictionary.push_back(Tile(true, '.')); //floor
-		dictionary.push_back(Tile(true, '#')); //wall
+		dictionary.push_back(Tile()); // 0 -debug tile
+		dictionary.push_back(Tile(true, '@')); // 1 -Player
+		dictionary.push_back(Tile(true, '.')); // 2 - floor
+		dictionary.push_back(Tile(false, '#')); // 3 - wall
+		dictionary.push_back(Tile(true, '$'));// 4 - win tile
 	}
 
 	Tile GetTile(int id) {
@@ -67,16 +68,31 @@ public:
 	//set the viewport position
 	void SetViewportPosition(int x, int y);
 
+	void SetViewportCenteredOnPosition(int x, int y);
+
 	//getters
 	int GetViewportPositionX() { return viewportPositionX; }
 	int GetViewportPositionY() { return viewportPositionY; }
 	int GetMapSizeX() { return mapSizeX; }
 	int GetMapSizeY() { return mapSizeY; }
+	int GetTileIDAt(int x, int y);
+
 	//see if tile is walkable
 	bool IsTileWalkableAt(int x, int y);
+
+	void LinkPlayerCoords(int* x, int* y);
+
+	//utility functions
+	bool isInMapBounds(int x, int y);
+
 private:
 	//tile dictionary
 	TileDictionary tileDictionary;
+
+	int* playerX;
+	int* playerY;
+	int old_PlayerX = 0;
+	int old_PlayerY = 0;
 
 	int viewport[120][26] = {}; //array since console size is known;
 
@@ -86,9 +102,6 @@ private:
 
 	//map data
 	vector<vector<int>> mapData;
-
-	//utility functions
-	bool isInMapBounds(int x, int y);
 
 	//map size
 	int mapSizeX = 200;
@@ -101,5 +114,3 @@ private:
 	//singleton
 	static Map* instance;
 };
-
-#endif // MAP_H

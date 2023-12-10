@@ -19,7 +19,7 @@ public:
 	Input(); //constructor
 	void Update();//update instance
 	static Input* GetInstance();//
-
+	static void FlushInputs(); //clears the input buffer
 	bool GetKeyDown(KeyCode key);
 	static bool SuspendInput; //used when input shouldnt be retrieved.
 private:

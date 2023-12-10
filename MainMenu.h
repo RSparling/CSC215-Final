@@ -2,8 +2,7 @@
 #include "State.h"
 #include "MapState.h"
 #include "MainMenuScreen.h"
-using States::State;
-using States::MapState;
+
 namespace States {
 	/*
 		<summary>
